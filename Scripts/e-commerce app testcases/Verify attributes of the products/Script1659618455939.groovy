@@ -15,7 +15,8 @@ import com.kms.katalon.core.testcase.TestCase as TestCase
 import com.kms.katalon.core.testdata.TestData
 import com.kms.katalon.core.testdata.TestDataFactory
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
-import com.kms.katalon.core.testobject.TestObject as TestObject
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
@@ -36,5 +37,15 @@ TestData productTestData = TestDataFactory.findTestData(GlobalVariable.productTe
 productList = productTestData.getAllData().stream().map{product -> new ProductData(product[0],product[1], Double.parseDouble(product[2]))}.collect(Collectors.toList())
 	
 println productList
+
+productList.forEach{
+	product -> PL.selectProduct(product.getProductName())
+	ProductData actualProduct = PL.getProductDetail(product.getProductName())
+	if(actualProduct==product) {
+		KeywordUtil.markPassed("Successfully verified the details of the product " + product.getProductName())
+	} else {
+		KeywordUtil.markPassed("Verification failed for the product " + product.getProductName())
+	}
+}
 
 //PL.selectProduct(productName)
