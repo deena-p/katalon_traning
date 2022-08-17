@@ -1,5 +1,5 @@
 {
-  "keywordFileContentHash": "BBDA13CD405FC062D543CF19CB0E3A40",
+  "keywordFileContentHash": "41C61F58D32BA1FD7ACFF758B7E05FB9",
   "keywordClasses": [
     {
       "name": "basic.GeneralLibrary",
@@ -37,7 +37,7 @@
           "javadoc": ""
         },
         {
-          "name": "startTheAppAndLoginToTheApplication",
+          "name": "startAndLoginToApp",
           "parameters": [
             {
               "name": "userName",
@@ -75,6 +75,90 @@
         },
         {
           "name": "logoutTheAppAndClose",
+          "parameters": [],
+          "javadoc": ""
+        },
+        {
+          "name": "tapOnShoppingCartButton",
+          "parameters": [],
+          "javadoc": ""
+        },
+        {
+          "name": "tapOnCheckoutButton",
+          "parameters": [],
+          "javadoc": ""
+        },
+        {
+          "name": "fillCheckoutInformationAndContinue",
+          "parameters": [
+            {
+              "name": "firstName",
+              "initialExpression": "",
+              "type": {
+                "fullClassName": "java.lang.String",
+                "unresolvedClassName": "String",
+                "isArray": false,
+                "isGnericsPlaceHolder": false,
+                "hasImmutableClassName": false,
+                "genericsTypes": [],
+                "errorOnParsing": false
+              }
+            },
+            {
+              "name": "lastName",
+              "initialExpression": "",
+              "type": {
+                "fullClassName": "java.lang.String",
+                "unresolvedClassName": "String",
+                "isArray": false,
+                "isGnericsPlaceHolder": false,
+                "hasImmutableClassName": false,
+                "genericsTypes": [],
+                "errorOnParsing": false
+              }
+            },
+            {
+              "name": "zipCode",
+              "initialExpression": "",
+              "type": {
+                "fullClassName": "java.lang.String",
+                "unresolvedClassName": "String",
+                "isArray": false,
+                "isGnericsPlaceHolder": false,
+                "hasImmutableClassName": false,
+                "genericsTypes": [],
+                "errorOnParsing": false
+              }
+            }
+          ],
+          "javadoc": ""
+        },
+        {
+          "name": "tapOnFinishButton",
+          "parameters": [],
+          "javadoc": ""
+        },
+        {
+          "name": "verifyOrderConfirmation",
+          "parameters": [
+            {
+              "name": "orderConfirmationMessage",
+              "initialExpression": "",
+              "type": {
+                "fullClassName": "java.lang.String",
+                "unresolvedClassName": "String",
+                "isArray": false,
+                "isGnericsPlaceHolder": false,
+                "hasImmutableClassName": false,
+                "genericsTypes": [],
+                "errorOnParsing": false
+              }
+            }
+          ],
+          "javadoc": ""
+        },
+        {
+          "name": "tapOnBackHomeButton",
           "parameters": [],
           "javadoc": ""
         }

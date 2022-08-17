@@ -23,11 +23,12 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
+import basic.SortBy
 import data.ProductData
 import internal.GlobalVariable
 import mobilelibrary.MobileCustomKeywords
 
-public class ProductLibrary {
+public class ProductLibrary extends MobileCustomKeywords{
 
 	private static String productLocator = "//*[@text='%s']"
 	private static String productAddToCardXpath = "//*[@text='%s']/following-sibling::*/*[@text='ADD TO CART']"
@@ -41,7 +42,7 @@ public class ProductLibrary {
 		TestObject productObject = new TestObject().addProperty("xpath", ConditionType.EQUALS, productXpath)
 		while(!Mobile.waitForElementPresent(productObject, 1)) {
 			//if it is end of mobile page, it has to stop swipe
-			if(isEndOfTheMobileAppPage(MobileDriverFactory.getDriver().getPageSource())) {
+			if(isEndOfPage(MobileDriverFactory.getDriver().getPageSource())) {
 				KeywordUtil.markFailedAndStop("Unable to find the product " + productName)
 			} else {
 				MobileCustomKeywords.swipeBottomToTop(1)
@@ -50,18 +51,9 @@ public class ProductLibrary {
 		Mobile.tap(productObject,0)
 		KeywordUtil.markPassed("Update the card for the product " + productName)
 		//once it reached end of the page - scroll back to the first page, so that next product will work fine
-		while(!isEndOfTheMobileAppPage(MobileDriverFactory.getDriver().getPageSource())) {
+		while(!isEndOfPage(MobileDriverFactory.getDriver().getPageSource())) {
 			MobileCustomKeywords.swipeTopToBottom(1)
 		}
-	}
-
-	public static boolean isEndOfTheMobileAppPage(String currentPageSource) {
-		if(currentPageSource.equalsIgnoreCase(previousPageSource)) {
-			previousPageSource = ""
-			return true
-		}
-		previousPageSource = currentPageSource
-		return false
 	}
 
 	@Keyword
@@ -74,29 +66,55 @@ public class ProductLibrary {
 		TestObject productObject = new TestObject().addProperty("xpath", ConditionType.EQUALS, String.format(productLocator, productName))
 		while(!Mobile.waitForElementPresent(productObject, 1)) {
 			//if it is end of mobile page, it has to stop swipe
-			if(isEndOfTheMobileAppPage(MobileDriverFactory.getDriver().getPageSource())) {
+			if(isEndOfPage(MobileDriverFactory.getDriver().getPageSource())) {
 				KeywordUtil.markFailedAndStop("Unable to find the product " + productName)
 			} else {
-				MobileCustomKeywords.swipeBottomToTop(1)
+				swipeBottomToTop(1)
 			}
 		}
-		Mobile.tap(productObject)
-		KeywordUtil.markFailedAndStop("Successfully selected the product " + productName)
+		Mobile.tap(productObject,0)
+		KeywordUtil.markPassed("Successfully selected the product " + productName)
+		Thread.sleep(3000)
 	}
 
 	@Keyword
 	public static ProductData getProductDetail(String productName) {
-		MobileCustomKeywords.swipeMobileAppInVericalWay(0.6, 0.5)
+		swipeMobileAppInVericalWay(0.6, 0.5)
+		//Forming xpath
 		String productNameLocator = "//android.widget.TextView[@text = '%s']"
 		String productDescLocator = "//android.widget.TextView[@text = '%s']/following-sibling::android.widget.TextView"
 		String productPriceLocator = "//android.widget.TextView[@text = '%s']/../following-sibling::android.widget.TextView"
+		//creating the test object based on the xpath
 		TestObject productNameObject = new TestObject().addProperty("xpath", ConditionType.EQUALS, String.format(productNameLocator, productName))
 		TestObject productDescObject = new TestObject().addProperty("xpath", ConditionType.EQUALS, String.format(productDescLocator, productName))
 		TestObject productPriceObject = new TestObject().addProperty("xpath", ConditionType.EQUALS, String.format(productPriceLocator, productName))
+		//product data with actual product information
 		ProductData productData = new ProductData()
 		productData.setProductName(Mobile.getText(productNameObject, 0))
-		productData.setProductDescription(Mobile.getText(productNameObject, 0))
-		productData.setProductPrice(Double.parseDouble(Mobile.getText(productNameObject, 0).replace('$', '')))
+		productData.setProductDescription(Mobile.getText(productDescObject, 0))
+		productData.setProductPrice(Double.parseDouble(Mobile.getText(productPriceObject, 0).replace('$', '')))
+		//go back to product page once product information is retrieved
+		Mobile.pressBack()
 		return productData
 	}
+
+	@Keyword
+	public static void clickSortButton() {
+		Mobile.tap(findTestObject('Object Repository/ecommercesampleapp/ProductPage/sort_button'), 0)
+	}
+
+	@Keyword
+	public static void clickOnSortItemsBy(String sortingType) {
+		String sortXpath = String.format("//android.widget.TextView[@text='%s']", sortingType)
+		TestObject testObject = new TestObject().addProperty("XPATH", ConditionType.EQUALS, sortXpath)
+		Mobile.tap(testObject, 0)
+	}
+
+	@Keyword
+	public static void clickOnSortItemsBy(SortBy sortBy) {
+		String sortXpath = String.format("//android.widget.TextView[@text='%s']", sortBy.getDesc())
+		TestObject testObject = new TestObject().addProperty("XPATH", ConditionType.EQUALS, sortXpath)
+		Mobile.tap(testObject, 0)
+	}
+
 }

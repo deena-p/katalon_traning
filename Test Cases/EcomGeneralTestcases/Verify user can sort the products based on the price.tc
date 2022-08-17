@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Verify user can sort the products based on the price</name>
+   <tag>Regression</tag>
+   <comment></comment>
+   <testCaseGuid>a75d5405-1d19-483b-b739-6816d9d56042</testCaseGuid>
+</TestCaseEntity>

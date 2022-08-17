@@ -1,5 +1,5 @@
 {
-  "keywordFileContentHash": "8F414253CC72551EAED57BAC5A440AFE",
+  "keywordFileContentHash": "8C33A5E7AAA91B4D2A1C4F45F2B5BB95",
   "keywordClasses": [
     {
       "name": "product.ProductLibrary",
@@ -80,6 +80,49 @@
               "type": {
                 "fullClassName": "java.lang.String",
                 "unresolvedClassName": "String",
+                "isArray": false,
+                "isGnericsPlaceHolder": false,
+                "hasImmutableClassName": false,
+                "genericsTypes": [],
+                "errorOnParsing": false
+              }
+            }
+          ],
+          "javadoc": ""
+        },
+        {
+          "name": "clickSortButton",
+          "parameters": [],
+          "javadoc": ""
+        },
+        {
+          "name": "clickOnSortItemsBy",
+          "parameters": [
+            {
+              "name": "sortingType",
+              "initialExpression": "",
+              "type": {
+                "fullClassName": "java.lang.String",
+                "unresolvedClassName": "String",
+                "isArray": false,
+                "isGnericsPlaceHolder": false,
+                "hasImmutableClassName": false,
+                "genericsTypes": [],
+                "errorOnParsing": false
+              }
+            }
+          ],
+          "javadoc": ""
+        },
+        {
+          "name": "clickOnSortItemsBy",
+          "parameters": [
+            {
+              "name": "sortBy",
+              "initialExpression": "",
+              "type": {
+                "fullClassName": "basic.SortBy",
+                "unresolvedClassName": "SortBy",
                 "isArray": false,
                 "isGnericsPlaceHolder": false,
                 "hasImmutableClassName": false,

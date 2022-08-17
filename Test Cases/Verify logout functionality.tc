@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>Verify logout functionality</name>
-   <tag></tag>
-   <comment></comment>
-   <testCaseGuid>f804340c-f27c-4a8d-a7b3-8e97f4d67104</testCaseGuid>
-</TestCaseEntity>

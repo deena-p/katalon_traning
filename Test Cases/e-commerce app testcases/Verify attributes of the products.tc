@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description>Product Name, Desc, and Price</description>
-   <name>Verify attributes of the products</name>
-   <tag>@Regression</tag>
-   <comment></comment>
-   <testCaseGuid>e6a3fbde-a3d1-4410-b835-6751ac6566b0</testCaseGuid>
-</TestCaseEntity>
